@@ -14,50 +14,76 @@
 </head>
 <body>
 
-  <!-- NAWIGACJA Z BEZPIECZNYM DROPDOWNEM -->
+ <!-- NAWIGACJA Z RESPONSYWNYM MENU MOBILNYM -->
   <header>
     <div class="nav-container">
       <a href="#" class="logo">
-        <img src="grafiki/robot_biały_V2.png" alt="logo" class="v4-client-logo">
+        <i class="fa-solid fa-circle-play"></i>
         Moje<span>Portfolio</span>
       </a>
 
+      <!-- Przycisk Hamburger dla urządzeń mobilnych -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <ul class="nav-menu">
-        <li class="nav-item"><a href="#o-mnie" class="nav-link">O mnie</a></li>
+        <li class="nav-item"><a href="#o-mnie" class="nav-link" onclick="closeMobileMenu()">O mnie</a></li>
         
-        <li class="nav-item">
-          <a href="#portfolio" class="nav-link">
+        <li class="nav-item dropdown-parent">
+          <a href="#portfolio" class="nav-link" onclick="toggleDropdown(event)">
             Portfolio <i class="fa-solid fa-chevron-down"></i>
           </a>
           <ul class="dropdown">
-            <li><a href="#portfolio">✨ Wszystkie realizacje</a></li>
-            <li><a href="#sekcja-montaz-video"><i class="fa-solid fa-video"></i> Montaż Video</a></li>
-            <li><a href="#sekcja-miniaturki"><i class="fa-solid fa-wand-magic-sparkles"></i> Miniaturki i grafiki</a></li>
-			<li><a href="#sekcja-opisy-spisy-treści"><i class="fa-solid fa-file-lines"></i> Opisy & Spisy Treści</a></li>
-			<li><a href="#sekcja-arty"><i class="fa-solid fa-palette"></i> Arty</a></li>
+            <li><a href="#portfolio" onclick="closeMobileMenu()">✨ Wszystkie realizacje</a></li>
+            <li><a href="#sekcja-montaz-video" onclick="closeMobileMenu()"><i class="fa-solid fa-video"></i> Montaż Video</a></li>
+            <li><a href="#sekcja-miniaturki" onclick="closeMobileMenu()"><i class="fa-solid fa-wand-magic-sparkles"></i> Miniaturki i grafiki</a></li>
+			<li><a href="#sekcja-opisy-spisy-treści" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i> Opisy & Spisy Treści</a></li>
+			<li><a href="#sekcja-arty" onclick="closeMobileMenu()"><i class="fa-solid fa-palette"></i> Arty</a></li>
           </ul>
         </li>
 
-        <li class="nav-item">
-          <a href="#z-kim-pracowalem" class="nav-link">
+        <li class="nav-item dropdown-parent">
+          <a href="#z-kim-pracowalem" class="nav-link" onclick="toggleDropdown(event)">
             Z kim współpracowałem <i class="fa-solid fa-chevron-down"></i>
           </a>
           <ul class="dropdown">
-            <li><a href="#z-kim-pracowalem">Kancelaria Pledziewicz & Legal Media</a></li>
-            <li><a href="#z-kim-pracowalem">Niesławny kard</a></li>
-            <li><a href="#z-kim-pracowalem">Osobiste projekty</a></li>
+            <li><a href="#z-kim-pracowalem" onclick="closeMobileMenu()">Kancelaria Pledziewicz & Legal Media</a></li>
+            <li><a href="#z-kim-pracowalem" onclick="closeMobileMenu()">Niesławny kard</a></li>
+            <li><a href="#z-kim-pracowalem" onclick="closeMobileMenu()">Osobiste projekty</a></li>
           </ul>
         </li>
 
-        <li class="nav-item"><a href="#zakres-prac" class="nav-link">Zakres prac</a></li>
+        <li class="nav-item"><a href="#zakres-prac" class="nav-link" onclick="closeMobileMenu()">Zakres prac</a></li>
         <li class="nav-item">
-          <a href="#kontakt" class="btn-nav-contact">
+          <a href="#kontakt" class="btn-nav-contact" onclick="closeMobileMenu()">
             <i class="fa-solid fa-paper-plane"></i> Kontakt
           </a>
         </li>
       </ul>
     </div>
   </header>
+
+  <!-- Skrypt obsługi menu mobilnego (wklej do sekcji skryptów) -->
+  <script>
+    function toggleMobileMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.remove('active');
+    }
+
+    function toggleDropdown(event) {
+      if (window.innerWidth <= 992) {
+        event.preventDefault();
+        const parent = event.currentTarget.parentElement;
+        parent.classList.toggle('open');
+      }
+    }
+  </script>
 
   <!-- SEKCJA HERO -->
   <section id="o-mnie">
